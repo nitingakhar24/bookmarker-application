@@ -1,5 +1,6 @@
 package com.bookmarker.app.controller;
 
+import com.bookmarker.app.dto.BookmarksDTO;
 import com.bookmarker.app.entity.Bookmark;
 import com.bookmarker.app.service.BookmarkService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class BookmarkController {
     private final BookmarkService bookmarkService;
 
     @GetMapping
-    public List<Bookmark> getBookmarks(@RequestParam(name = "page", defaultValue = "1") Integer page) {
+    public BookmarksDTO getBookmarks(@RequestParam(name = "page", defaultValue = "1") Integer page) {
         return bookmarkService.getAllBookmarks(page);
     }
 }
