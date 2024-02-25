@@ -24,7 +24,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build with Maven
-        run: ./mvnw verify
+        run: ./mvnw clean verify -e -X
 
       - if: ${{ github.ref == 'refs/heads/main' }}
         name: Build and Publish Docker Image
