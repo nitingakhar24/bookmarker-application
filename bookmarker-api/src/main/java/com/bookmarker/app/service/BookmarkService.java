@@ -26,4 +26,16 @@ public class BookmarkService {
         return new BookmarksDTO(bookmarkDTO);
     }
 
+    @Transactional(readOnly = true)
+    public BookmarksDTO searchBookmarks(String query, Integer page) {
+        int pageNo = page < 1 ? 0 : page - 1;
+        Pageable pageable = PageRequest.of(pageNo, 10, Sort.Direction.DESC, "createdAt");
+        Page<BookmarkDTO> bookmarkDTO = null;
+        bookmarkDTO = bookmarkRepository.findByTitleContainsIgnoreCase(query, pageable);
+        if (bookmarkDTO == null) {
+            bookmarkRepository.searchBookmarks(query, pageable);
+        }
+        return new BookmarksDTO(bookmarkDTO);
+    }
+
 }
