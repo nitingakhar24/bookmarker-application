@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  bookmarker-api:
+    build:
+      context: bookmarker-api
+      dockerfile: Dockerfile.layered
+    ports:
+      - "18080:8080"
+    depends_on:
+      - bookmarker-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bookmarker-db:5432/bookmark-application
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root@123
