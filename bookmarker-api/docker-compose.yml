@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   bookmarker-db:
-    image: postgres:14-alpine
+    image: postgres
     environment:
       POSTGRES_DB: bookmark-application
       POSTGRES_USER: postgres
