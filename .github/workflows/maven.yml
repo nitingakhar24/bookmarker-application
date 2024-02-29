@@ -30,5 +30,6 @@ jobs:
         name: Build and Publish Docker Image
         run: |
           ./mvnw clean package jib:dockerBuild -DskipTests
+          echo "Docker Image Name: ${{ secrets.DOCKER_USERNAME }}/bookmarker-api"
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/bookmarker-api
